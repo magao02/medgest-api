@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import Glicemia from '@modules/glicemias/typeorm/entities/glicemia';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('users')
 class User {
@@ -16,6 +17,9 @@ class User {
 
   @Column({ default: 'gestante' })
   role: string;
+
+  @OneToMany(() => Glicemia, glicemia => glicemia.gestante)
+  glicemias: Glicemia[];
 
   @Column({ default: true })
   isActive: boolean;
