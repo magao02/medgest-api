@@ -1,3 +1,4 @@
+import AppError from '@shared/errors/appError';
 import Glicemia from '../typeorm/entities/glicemia';
 import { GlicemiasRepository } from '../typeorm/repositories/glicemiasRepository';
 import GetGestanteService from '@modules/users/services/getGestanteService';
@@ -20,7 +21,7 @@ class CadastrarGlicemiaService {
     const gestante = await getGestanteService.execute(gestante_id);
 
     if (!gestante) {
-      throw new Error('Gestante not found');
+      throw new AppError('Gestante not found');
     }
     const glicemia = this.glicemiasRepository.create({
       valor,

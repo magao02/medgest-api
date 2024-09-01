@@ -1,3 +1,4 @@
+import AppError from '@shared/errors/appError';
 import { GlicemiasRepository } from '../typeorm/repositories/glicemiasRepository';
 
 class DeleteGlicemiaService {
@@ -7,7 +8,7 @@ class DeleteGlicemiaService {
     const glicemia = await this.glicemiasRepository.findById(id);
 
     if (!glicemia) {
-      throw new Error('Glicemia not found');
+      throw new AppError('Glicemia not found');
     }
 
     await this.glicemiasRepository.delete(id);

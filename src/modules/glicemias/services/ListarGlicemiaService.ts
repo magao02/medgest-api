@@ -1,3 +1,4 @@
+import AppError from '@shared/errors/appError';
 import Glicemia from '../typeorm/entities/glicemia';
 import { GlicemiasRepository } from '../typeorm/repositories/glicemiasRepository';
 
@@ -9,7 +10,7 @@ class ListarGlicemiaService {
       await this.glicemiasRepository.findByGestanteId(gestante_id);
 
     if (!gestante) {
-      throw new Error('Gestante not found');
+      throw new AppError('Gestante not found');
     }
     const glicemias =
       await this.glicemiasRepository.findByGestanteId(gestante_id);

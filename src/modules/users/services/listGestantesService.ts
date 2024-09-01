@@ -1,3 +1,4 @@
+import AppError from '@shared/errors/appError';
 import User from '../typeorm/entities/user';
 import { UsersRepository } from '../typeorm/repositories/usersRepository';
 class ListGestanteService {
@@ -6,7 +7,7 @@ class ListGestanteService {
     const medico = await this.usersRepository.findById(id);
 
     if (!medico) {
-      throw new Error('Medico not found');
+      throw new AppError('Medico not found');
     }
 
     const gestantes = await this.usersRepository.findByMedico(id);
