@@ -22,6 +22,14 @@ export const UsersRepository = dataSource.getRepository(User).extend({
     return gestantes;
   },
 
+  async findGestante(idGestante: string): Promise<User | null> {
+    const gestante = this.findOne({
+      where: { id: idGestante },
+      relations: ['medico', 'glicemias'],
+    });
+    return gestante;
+  },
+
   async softDelete(id: string): Promise<void> {
     await this.update(id, {
       isActive: false,
