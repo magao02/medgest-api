@@ -6,12 +6,14 @@ import cors from 'cors';
 import { errors } from 'celebrate';
 import AppError from '@shared/errors/appError';
 import routes from './routes';
+import upload from '@config/upload';
 
 const app = express();
 
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(routes);
+app.use('/files', express.static(upload.directory));
 app.use(errors());
 
 app.use(
