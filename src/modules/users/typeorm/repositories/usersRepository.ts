@@ -18,7 +18,9 @@ export const UsersRepository = dataSource.getRepository(User).extend({
   },
 
   async findByMedico(idMedico: string): Promise<User[]> {
-    const gestantes = this.find({ where: { medico: { id: idMedico } } });
+    const gestantes = this.find({
+      where: { medico: { id: idMedico }, isActive: true },
+    });
     return gestantes;
   },
 

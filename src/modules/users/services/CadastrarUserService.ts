@@ -19,6 +19,7 @@ interface Gestante2DTO {
   password: string;
   role: Role;
   dataNascimento: Date;
+  idmedico: string;
 }
 class CadastrarUserService {
   private usersRepository = UsersRepository;
@@ -35,12 +36,17 @@ class CadastrarUserService {
     let user;
     if (data.role == 'gestante') {
       const gestanteData = data as Gestante2DTO;
+      const medico = await this.usersRepository.findById(gestanteData.idmedico);
+      if (!medico) {
+        throw new AppError('Medico not found', 404);
+      }
       user = this.usersRepository.create({
         nome: gestanteData.nome,
         email: gestanteData.email,
         role: gestanteData.role,
         dataNascimento: gestanteData.dataNascimento,
         password: hashedPassword,
+        medico,
       });
     } else {
       const medicoData = data as MedicoDTO;

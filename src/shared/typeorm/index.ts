@@ -1,3 +1,4 @@
+import User from '@modules/users/typeorm/entities/user';
 import * as dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
 
@@ -11,5 +12,5 @@ export const dataSource: DataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
 
-  entities: [],
+  entities: [User],
 });
