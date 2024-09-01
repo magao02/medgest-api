@@ -1,4 +1,5 @@
 import Glicemia from '@modules/glicemias/typeorm/entities/glicemia';
+import Peso from '@modules/pesos/typeorm/entities/peso';
 import {
   Column,
   CreateDateColumn,
@@ -40,6 +41,9 @@ class User {
 
   @OneToMany(() => Glicemia, glicemia => glicemia.gestante)
   glicemias: Glicemia[];
+
+  @OneToMany(() => Peso, peso => peso.gestante)
+  pesos: Peso[];
 
   @CreateDateColumn()
   created_at: Date;
