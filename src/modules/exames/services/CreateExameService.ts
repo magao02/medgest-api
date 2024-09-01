@@ -1,5 +1,6 @@
 import GetGestanteService from '@modules/users/services/getGestanteService';
 import { ExamesRepository } from '../typeorm/repositories/examesRepository';
+import AppError from '@shared/errors/appError';
 
 interface IRequest {
   nome: string;
@@ -14,7 +15,7 @@ class CreateExameService {
     const gestante = await getGestanteService.execute(gestanteId);
 
     if (!gestante) {
-      throw new Error('Gestante não encontrada');
+      throw new AppError('Gestante não encontrada');
     }
 
     const exame = ExamesRepository.create({
