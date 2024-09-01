@@ -9,6 +9,9 @@ class Glicemia {
   @Column()
   valor: number;
 
+  @Column()
+  data: Date;
+
   @ManyToOne(() => User, user => user.glicemias)
   gestante: User;
 }
