@@ -1,18 +1,18 @@
 import { dataSource } from '@shared/typeorm';
 import Exame from '../entities/exame';
 
-export const GlicemiasRepository = dataSource.getRepository(Exame).extend({
+export const ExamesRepository = dataSource.getRepository(Exame).extend({
   async findById(id: string): Promise<Exame | null> {
-    const glicemia = this.findOne({
+    const exame = this.findOne({
       where: { id },
     });
-    return glicemia;
+    return exame;
   },
 
   async findByGestanteId(id: string): Promise<Exame[]> {
-    const glicemias = this.find({
+    const exames = this.find({
       where: { gestante: { id: id } },
     });
-    return glicemias;
+    return exames;
   },
 });
