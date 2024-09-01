@@ -1,3 +1,4 @@
+import Exame from '@modules/exames/typeorm/entities/exame';
 import Glicemia from '@modules/glicemias/typeorm/entities/glicemia';
 import Peso from '@modules/pesos/typeorm/entities/peso';
 import {
@@ -44,6 +45,9 @@ class User {
 
   @OneToMany(() => Peso, peso => peso.gestante)
   pesos: Peso[];
+
+  @OneToMany(() => Exame, exame => exame.gestante)
+  exames: Peso[];
 
   @CreateDateColumn()
   created_at: Date;
