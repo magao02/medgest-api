@@ -9,7 +9,15 @@ const examesRouter = Router();
 const examesController = new ExamesController();
 const upload = multer(uploadConfig);
 
-examesRouter.get('/', examesController.index);
+examesRouter.get(
+  '/:gestante_id',
+  celebrate({
+    [Segments.PARAMS]: {
+      gestante_id: Joi.string().uuid().required(),
+    },
+  }),
+  examesController.index,
+);
 
 examesRouter.post(
   '/',

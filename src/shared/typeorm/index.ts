@@ -1,3 +1,4 @@
+import Exame from '@modules/exames/typeorm/entities/exame';
 import Glicemia from '@modules/glicemias/typeorm/entities/glicemia';
 import Peso from '@modules/pesos/typeorm/entities/peso';
 import User from '@modules/users/typeorm/entities/user';
@@ -14,5 +15,5 @@ export const dataSource: DataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
 
-  entities: [User, Peso, Glicemia],
+  entities: [User, Peso, Glicemia, Exame],
 });
