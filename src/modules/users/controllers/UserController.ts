@@ -33,7 +33,7 @@ class UserController {
     return response.status(204).send();
   }
 
-  public async index(request: Request, response: Response): Promise<Response> {
+  public async show(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
     const listGestanteService = new ListGestanteService();
@@ -63,7 +63,7 @@ class UserController {
     return response.json(user);
   }
 
-  public async show(request: Request, response: Response): Promise<Response> {
+  public async index(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
     const getGestanteService = new GetGestanteService();
