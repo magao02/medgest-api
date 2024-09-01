@@ -17,6 +17,11 @@ export const UsersRepository = dataSource.getRepository(User).extend({
     return user;
   },
 
+  async findByMedico(idMedico: string): Promise<User[]> {
+    const gestantes = this.find({ where: { medico: { id: idMedico } } });
+    return gestantes;
+  },
+
   async softDelete(id: string): Promise<void> {
     await this.update(id, {
       isActive: false,
